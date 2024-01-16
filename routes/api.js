@@ -40,7 +40,7 @@ router.get('/', (req, res, next) => {
     if (res.locals.isAuth) {
         return res.json(`/boxes/${res.locals.udata.username}`);
     } else {
-        return res.json();
+        return res.json('');
     }
 });
 

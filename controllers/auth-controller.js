@@ -1,4 +1,6 @@
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+    require('dotenv').config();
+}
 const asyncHandler = require('express-async-handler');
 const { body, param, validationResult } = require('express-validator');
 const createError = require('http-errors');
