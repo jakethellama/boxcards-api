@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const cookie = require('cookie');
 const bcrypt = require('bcryptjs');
+const secrets = require('../utils/secrets');
 const User = require('../models/user');
 const Card = require('../models/card');
 const Set = require('../models/set');
@@ -61,7 +62,7 @@ exports.postUser = [
 
                 const jicUser = await User.findOne({ _id: user._id }, '_id username').exec();
 
-                jwt.sign({ user: jicUser }, process.env.JWTSECRET, { expiresIn: '200h' }, (error, token) => {
+                jwt.sign({ user: jicUser }, secrets.JWTSECRET, { expiresIn: '12h' }, (error, token) => {
                     if (error) {
                         return next(error);
                     }

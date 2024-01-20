@@ -9,6 +9,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const secrets = require('./utils/secrets');
 
 const apiRouter = require('./routes/api');
 
@@ -18,11 +19,9 @@ app.use(helmet());
 app.disable('x-powered-by');
 
 mongoose.set('strictQuery', false);
-const mongoDB = process.env.MONGODB;
-async function main() {
-    await mongoose.connect(mongoDB);
-}
-main().catch((err) => console.log(err));
+mongoose.connect(secrets.MONGODBURL).catch((err) => {
+    throw err;
+});
 
 const corsOptions = {
     origin: 'http://localhost:5173',

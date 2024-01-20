@@ -19,6 +19,6 @@ USER node
 
 COPY . .
 
-EXPOSE 3000
+EXPOSE 80
 
 CMD npm start

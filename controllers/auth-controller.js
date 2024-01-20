@@ -7,6 +7,7 @@ const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const cookie = require('cookie');
 const bcrypt = require('bcryptjs');
+const secrets = require('../utils/secrets');
 const User = require('../models/user');
 const Card = require('../models/card');
 const Set = require('../models/set');
@@ -46,7 +47,7 @@ exports.login = [
                 }
 
                 if (result === true) {
-                    jwt.sign({ user: { username: user.username, _id: user._id } }, process.env.JWTSECRET, { expiresIn: '200h' }, (error, token) => {
+                    jwt.sign({ user: { username: user.username, _id: user._id } }, secrets.JWTSECRET, { expiresIn: '12h' }, (error, token) => {
                         if (error) {
                             return next(error);
                         }

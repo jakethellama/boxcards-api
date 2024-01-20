@@ -3,6 +3,7 @@ const createError = require('http-errors');
 const jwt = require('jsonwebtoken');
 const asyncHandler = require('express-async-handler');
 const cookie = require('cookie');
+const secrets = require('../utils/secrets');
 const boxesController = require('../controllers/boxes-controller');
 const cardsController = require('../controllers/cards-controller');
 const setsController = require('../controllers/sets-controller');
@@ -13,7 +14,7 @@ const router = express.Router();
 function checkAuth2(req, res, next) {
     if (req.headers.cookie) {
         const cookies = cookie.parse(req.headers.cookie);
-        jwt.verify(cookies.bxcrd, process.env.JWTSECRET, async (err, payload) => {
+        jwt.verify(cookies.bxcrd, secrets.JWTSECRET, async (err, payload) => {
             if (err) {
                 // token is invalid or expired
                 res.locals.isAuth = false;
