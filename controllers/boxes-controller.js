@@ -66,10 +66,10 @@ exports.postUser = [
                     if (error) {
                         return next(error);
                     }
-                    res.setHeader('Set-Cookie', cookie.serialize('bxcrd', token, {
+                    res.setHeader('Set-Cookie', cookie.serialize('bxcrdTokenCooki', token, {
                         httpOnly: true,
                         secure: true,
-                        sameSite: 'strict',
+                        sameSite: 'none',
                         maxAge: 60 * 60 * 12,
                     }));
                     return res.json({ });

@@ -13,7 +13,7 @@ const authController = require('../controllers/auth-controller');
 const router = express.Router();
 
 const corsOptions = {
-    origin: ['https://www.boxcards.app/', 'https://boxcards.vercel.app/'],
+    origin: ['https://www.boxcards.app', 'https://boxcards.vercel.app'],
     credentials: true,
     optionsSuccessStatus: 200,
 };
@@ -21,7 +21,7 @@ const corsOptions = {
 function checkAuth2(req, res, next) {
     if (req.headers.cookie) {
         const cookies = cookie.parse(req.headers.cookie);
-        jwt.verify(cookies.bxcrd, secrets.JWTSECRET, async (err, payload) => {
+        jwt.verify(cookies.bxcrdTokenCooki, secrets.JWTSECRET, async (err, payload) => {
             if (err) {
                 // token is invalid or expired
                 res.locals.isAuth = false;

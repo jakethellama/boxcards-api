@@ -24,7 +24,7 @@ mongoose.connect(secrets.MONGODBURL).catch((err) => {
 });
 
 const corsOptions = {
-    origin: ['https://www.boxcards.app/', 'https://boxcards.vercel.app/'],
+    origin: ['https://www.boxcards.app', 'https://boxcards.vercel.app'],
     credentials: true,
     optionsSuccessStatus: 200,
 };
